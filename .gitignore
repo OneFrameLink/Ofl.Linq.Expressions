@@ -1,0 +1,6 @@
+**/*.xproj.user
+**/project.lock.json
+/**/bin
+/**/obj
+/**/.vs
+packages/*

@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Description>Utilities for working with code tree expressions in LINQ.</Description>
+    <AssemblyName>Ofl.Linq.Expressions</AssemblyName>
+    <PackageId>Ofl.Linq.Expressions</PackageId>
+    <PackageProjectUrl>https://github.com/OneFrameLink/Ofl.Linq.Expressions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OneFrameLink/Ofl.Linq.Expressions.git</RepositoryUrl>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+</Project>
