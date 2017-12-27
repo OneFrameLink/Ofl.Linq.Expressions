@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using System.Reflection;
 using Xunit;
 
@@ -28,6 +29,30 @@ namespace Ofl.Linq.Expressions.Tests
         #endregion
 
         #region Tests.
+
+        [Fact]
+        public void Test_UseCreateGetPropertyExpressionInOtherExpression()
+        {
+            // Get the property info.
+            PropertyInfo propertyInfo = typeof(Test).GetProperty(nameof(Test.Property));
+
+            // The parameter expression.
+            var parameterExpression = Expression.Parameter(typeof(Test), "_" + Guid.NewGuid().ToString("N"));
+
+            // Get the expression.  It's a member expression.
+            var propertyExpression = propertyInfo.CreateGetPropertyExpression(parameterExpression);
+
+            // Create an expression which compares it to null.
+            var notEqualExpression =
+                Expression.NotEqual(propertyExpression, Expression.Constant(null, propertyInfo.PropertyType));
+
+            // Create the lambda, compile, and run.
+            Func<Test, bool> func = Expression.Lambda<Func<Test, bool>>(notEqualExpression, parameterExpression)
+                .Compile();
+
+            // Run.
+            Assert.True(func(new Test()));
+        }
 
         [Fact]
         public void Test_CreateGetPropertyExpression()

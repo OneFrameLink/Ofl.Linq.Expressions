@@ -6,13 +6,30 @@ namespace Ofl.Linq.Expressions
 {
     public static class ExpressionExtensions
     {
-        public static MemberExpression CreateGetPropertyExpression(this PropertyInfo propertyInfo)
+        private static ParameterExpression CreateParameterExpression(this Type type)
+        {
+            // Validate parameters.
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            // Create the expression and return.
+            return Expression.Parameter(type, "o");
+        }
+
+        public static MemberExpression CreateGetPropertyExpression(this PropertyInfo propertyInfo) => propertyInfo.CreateGetPropertyExpression(
+            propertyInfo.DeclaringType.CreateParameterExpression());
+
+        public static MemberExpression CreateGetPropertyExpression(this PropertyInfo propertyInfo, ParameterExpression parameterExpression)
         {
             // Validate parameters.
             if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+            if (parameterExpression == null) throw new ArgumentNullException(nameof(parameterExpression));
 
-            // Create the parameter expression.
-            ParameterExpression parameterExpression = Expression.Parameter(propertyInfo.DeclaringType, "o");
+            // Validate the parameter expression.
+            if (!propertyInfo.DeclaringType.GetTypeInfo().IsAssignableFrom(parameterExpression.Type.GetTypeInfo()))
+                // Throw.
+                throw new InvalidOperationException($"The type of { nameof(parameterExpression) } ({ parameterExpression.Type } " +
+                    $"is not assignable to the type of { nameof(propertyInfo.DeclaringType) } " +
+                    $"({ propertyInfo.DeclaringType }) passed in the { nameof(propertyInfo) } parameter.");
 
             // Access the property.
             MemberExpression propertyExpression = Expression.Property(parameterExpression, propertyInfo);
@@ -21,13 +38,18 @@ namespace Ofl.Linq.Expressions
             return propertyExpression;
         }
 
-        public static Expression<Func<T, TProperty>> CreateGetPropertyLambdaExpression<T, TProperty>(this PropertyInfo propertyInfo)
+        public static Expression<Func<T, TProperty>> CreateGetPropertyLambdaExpression<T, TProperty>(this PropertyInfo propertyInfo) =>
+            propertyInfo.CreateGetPropertyLambdaExpression<T, TProperty>(typeof(T).CreateParameterExpression());
+
+        public static Expression<Func<T, TProperty>> CreateGetPropertyLambdaExpression<T, TProperty>(this PropertyInfo propertyInfo,
+            ParameterExpression parameterExpression)
         {
             // Validate parameters.
             if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
+            if (parameterExpression == null) throw new ArgumentNullException(nameof(parameterExpression));
 
             // Get the property expression.
-            MemberExpression propertyExpression = propertyInfo.CreateGetPropertyExpression();
+            MemberExpression propertyExpression = propertyInfo.CreateGetPropertyExpression(parameterExpression);
 
             // The expression.
             Expression expression = propertyExpression;

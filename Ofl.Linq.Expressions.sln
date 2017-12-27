@@ -1,15 +1,24 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CE59F8C7-9B05-4E8E-8133-64CA54B13F1C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0010 - src", "0010 - src", "{CE59F8C7-9B05-4E8E-8133-64CA54B13F1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{78BFACB6-D36B-4A12-B630-6722FA6B61D0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0020 - test", "0020 - test", "{78BFACB6-D36B-4A12-B630-6722FA6B61D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Linq.Expressions", "src\Ofl.Linq.Expressions\Ofl.Linq.Expressions.csproj", "{B985120F-3954-4734-8E2D-5D5BBA80810B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ofl.Linq.Expressions.Tests", "test\Ofl.Linq.Expressions.Tests\Ofl.Linq.Expressions.Tests.csproj", "{585B18A8-E6F3-4911-B3DD-1452A8AC7556}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0000 - solution-level", "0000 - solution-level", "{4CF8599C-6E14-4428-95B1-6CE9943961D1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		appveyor.yml = appveyor.yml
+		directory.build.props = directory.build.props
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,5 +61,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B985120F-3954-4734-8E2D-5D5BBA80810B} = {CE59F8C7-9B05-4E8E-8133-64CA54B13F1C}
 		{585B18A8-E6F3-4911-B3DD-1452A8AC7556} = {78BFACB6-D36B-4A12-B630-6722FA6B61D0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F756C106-2DEE-48C5-9597-87A2CEB11764}
 	EndGlobalSection
 EndGlobal
