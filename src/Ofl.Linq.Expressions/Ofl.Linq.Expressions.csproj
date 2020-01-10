@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Description>Utilities for working with code tree expressions in LINQ.</Description>
     <AssemblyName>Ofl.Linq.Expressions</AssemblyName>
     <PackageId>Ofl.Linq.Expressions</PackageId>
     <PackageProjectUrl>https://github.com/OneFrameLink/Ofl.Linq.Expressions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/OneFrameLink/Ofl.Linq.Expressions.git</RepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
     <PackageTags>linq linq-expressions expressions</PackageTags>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62925-02" PrivateAssets="All" />
-  </ItemGroup>
 </Project>
